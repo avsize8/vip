@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 import sqlite3
-from datetime import datetime
 import os
 import smtplib
 from email.mime.text import MIMEText
