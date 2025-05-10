@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Васильчук и партнеры - Юридические услуги</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Навигация -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{{ url_for('index') }}">VIP</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -28,7 +30,7 @@
                         <a class="nav-link" href="{{ url_for('about') }}">О компании</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('blog') }}">Блог</a>
+                        <a class="nav-link" href="https://t.me/BBankrotstvo" target="_blank">Блог</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('contacts') }}">Контакты</a>
@@ -40,52 +42,65 @@
 
     <!-- Герой-секция -->
     <header class="hero-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h1>Профессиональные юридические услуги</h1>
-                    <p class="lead">Мы предлагаем комплексные решения для защиты ваших бизнес-интересов</p>
-                    <a href="{{ url_for('contacts') }}" class="btn btn-primary btn-lg">Заказать консультацию</a>
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-6 slide-in left">
+                    <h1 class="display-3 fw-bold mb-5">Профессиональные юридические услуги</h1>
+                    <p class="lead mb-5">Мы предлагаем комплексные решения для защиты ваших бизнес-интересов и прав</p>
+                    <a href="{{ url_for('contacts') }}" class="btn btn-primary btn-lg px-4 py-3 me-3">Заказать консультацию</a>
+                    <a href="#services" class="btn btn-outline-light btn-lg px-4 py-3">Наши услуги</a>
                 </div>
-                <div class="col-lg-6">
-                    <img src="{{ url_for('static', filename='images/lawyer-hero.jpg') }}" alt="Юридические услуги" class="img-fluid rounded">
+                <div class="col-lg-6 slide-in right">
+                    <div class="hero-image-wrapper">
+                        <img src="{{ url_for('static', filename='images/lawyer-hero.jpg') }}" alt="" class="img-fluid rounded shadow-lg">
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Основные услуги -->
-    <section class="services-section py-5">
+    <section id="services" class="services-section py-7">
         <div class="container">
-            <h2 class="text-center mb-5">Наши услуги</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <i class="fas fa-balance-scale fa-3x mb-3 text-primary"></i>
-                            <h3 class="card-title">Банкротство</h3>
-                            <p class="card-text">Профессиональное сопровождение процедур банкротства физических и юридических лиц.</p>
-                            <a href="{{ url_for('services') }}#bankruptcy" class="btn btn-outline-primary">Подробнее</a>
+            <div class="text-center mb-7">
+                <span class="section-subtitle"></span>
+                <h2 class="section-title">Наши услуги</h2>
+                <div class="divider mx-auto"></div>
+            </div>
+            <div class="row g-5">
+                <div class="col-md-4 fade-in">
+                    <div class="card service-card h-100">
+                        <div class="card-body text-center p-5">
+                            <div class="service-icon mb-5">
+                                <i class="fas fa-balance-scale fa-3x"></i>
+                            </div>
+                            <h3 class="card-title mb-4">Банкротство</h3>
+                            <p class="card-text mb-5">Профессиональное сопровождение процедур банкротства физических и юридических лиц.</p>
+                            <a href="{{ url_for('services') }}#bankruptcy" class="btn btn-outline-primary stretched-link">Подробнее</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <i class="fas fa-home fa-3x mb-3 text-primary"></i>
-                            <h3 class="card-title">Споры по недвижимости</h3>
-                            <p class="card-text">Решение любых вопросов, связанных с недвижимостью и земельными отношениями.</p>
-                            <a href="{{ url_for('services') }}#real-estate" class="btn btn-outline-primary">Подробнее</a>
+                <div class="col-md-4 fade-in" style="animation-delay: 0.2s;">
+                    <div class="card service-card h-100">
+                        <div class="card-body text-center p-5">
+                            <div class="service-icon mb-5">
+                                <i class="fas fa-home fa-3x"></i>
+                            </div>
+                            <h3 class="card-title mb-4">Споры по недвижимости</h3>
+                            <p class="card-text mb-5">Решение любых вопросов, связанных с недвижимостью и земельными отношениями.</p>
+                            <a href="{{ url_for('services') }}#real-estate" class="btn btn-outline-primary stretched-link">Подробнее</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <i class="fas fa-gavel fa-3x mb-3 text-primary"></i>
-                            <h3 class="card-title">Административные споры</h3>
-                            <p class="card-text">Защита интересов клиентов в отношениях с государственными органами.</p>
-                            <a href="{{ url_for('services') }}#administrative" class="btn btn-outline-primary">Подробнее</a>
+                <div class="col-md-4 fade-in" style="animation-delay: 0.4s;">
+                    <div class="card service-card h-100">
+                        <div class="card-body text-center p-5">
+                            <div class="service-icon mb-5">
+                                <i class="fas fa-gavel fa-3x"></i>
+                            </div>
+                            <h3 class="card-title mb-4">Административные споры</h3>
+                            <p class="card-text mb-5">Защита интересов клиентов в отношениях с государственными органами.</p>
+                            <a href="{{ url_for('services') }}#administrative" class="btn btn-outline-primary stretched-link">Подробнее</a>
                         </div>
                     </div>
                 </div>
@@ -94,70 +109,127 @@
     </section>
 
     <!-- О компании (кратко) -->
-    <section class="about-section py-5 bg-light">
+    <section class="about-section py-7">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <img src="{{ url_for('static', filename='images/team.jpg') }}" alt="Наша команда" class="img-fluid rounded">
+                <div class="col-lg-6 mb-5 mb-lg-0 fade-in">
+                    <div class="about-image-wrapper">
+                        <img src="{{ url_for('static', filename='images/team.jpg') }}" alt="Наша команда" class="img-fluid rounded shadow-lg">
+                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <h2>О компании</h2>
-                    <p>Юридическая компания "Васильчук и партнеры" - это команда высококвалифицированных специалистов с многолетним опытом работы в различных областях права.</p>
-                    <p>Мы предлагаем индивидуальный подход к каждому клиенту и гарантируем конфиденциальность.</p>
-                    <a href="{{ url_for('about') }}" class="btn btn-primary">Подробнее о нас</a>
+                <div class="col-lg-6 fade-in">
+                    <span class="section-subtitle"></span>
+                    <h2 class="section-title mb-5">О компании</h2>
+                    <div class="divider"></div>
+                    <p class="mb-5">Юридическая компания "Васильчук и партнеры" - это команда высококвалифицированных специалистов с многолетним опытом работы в различных областях права.</p>
+                    <p class="mb-5">Мы предлагаем индивидуальный подход к каждому клиенту и гарантируем конфиденциальность всех предоставленных сведений.</p>
+                    <div class="d-flex flex-wrap gap-4">
+                        <a href="{{ url_for('about') }}" class="btn btn-primary px-4 py-3">Подробнее о нас</a>
+                        <a href="{{ url_for('contacts') }}" class="btn btn-outline-primary px-4 py-3">Связаться с нами</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Последние статьи -->
-    <section class="py-5">
+    <section class="py-7 bg-light">
         <div class="container">
-            <h2 class="text-center mb-5">Последние статьи</h2>
-            <div class="row">
+            <div class="text-center mb-7">
+                <span class="section-subtitle"></span>
+                <h2 class="section-title">Наши статьи</h2>
+                <div class="divider mx-auto"></div>
+            </div>
+            <div class="row g-5">
                 {% for article in featured_articles %}
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <img src="{{ url_for('static', filename='images/blog/' + article['image']) if article['image'] else 'https://via.placeholder.com/300x200' }}" class="card-img-top" alt="{{ article['title'] }}">
-                        <div class="card-body">
-                            <h3 class="card-title">{{ article['title'] }}</h3>
-                            <p class="card-text">{{ article['content'][:150] }}...</p>
-                            <a href="{{ url_for('article', article_id=article['id']) }}" class="btn btn-outline-primary">Читать далее</a>
+                <div class="col-md-4 fade-in" style="animation-delay: {{ loop.index0 * 0.2 }}s;">
+                    <div class="card article-card h-100">
+                        <div class="card-img-top">
+                            <img src="{{ url_for('static', filename='images/blog/' + article['image']) if article['image'] else 'https://via.placeholder.com/300x200' }}" class="img-fluid" alt="{{ article['title'] }}">
+                        </div>
+                        <div class="card-body p-5">
+                            <div class="article-meta mb-4">
+                                <span class="date"><i class="far fa-calendar me-2"></i>{{ article['created_at'] }}</span>
+                            </div>
+                            <h3 class="card-title mb-4">{{ article['title'] }}</h3>
+                            <p class="card-text mb-5">{{ article['content'][:150] }}...</p>
+                            <a href="https://t.me/BBankrotstvo" target="_blank" class="btn btn-link read-more ps-0">Читать далее <i class="fas fa-arrow-right ms-2"></i></a>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
+            <div class="text-center mt-6 fade-in">
+                <a href="https://t.me/BBankrotstvo" target="_blank" class="btn btn-outline-primary px-4 py-3">Все статьи</a>
+            </div>
         </div>
     </section>
 
     <!-- Контакты (кратко) -->
-    <section class="contact-section py-5">
+    <section class="contact-section py-7">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
-                    <h2>Контакты</h2>
-                    <p><i class="fas fa-map-marker-alt me-2"></i> Екатеринбург, ул. Мамина-Сибиряка, д. 101, оф. 7-18</p>
-                    <p><i class="fas fa-phone me-2"></i> +7 902 276-07-18</p>
-                    <p><i class="fas fa-envelope me-2"></i> vipvasel4uk@yandex.ru</p>
-                    <p><i class="fas fa-clock me-2"></i> Пн-Пт: 9:00 - 18:00</p>
+                <div class="col-lg-6 mb-5 mb-lg-0 fade-in">
+                    <span class="section-subtitle"></span>
+                    <h2 class="section-title mb-5">Контакты</h2>
+                    <div class="divider"></div>
+                    <div class="contact-info mt-6">
+                        <div class="d-flex mb-5">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Адрес</h5>
+                                <p>Екатеринбург, ул. Мамина-Сибиряка, д. 101, оф. 7-18</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-5">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h5>Телефон</h5>
+                                <p>+7 902 276-07-18</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-5">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5>Email</h5>
+                                <p>vipvasel4uk@yandex.ru</p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h5>Часы работы</h5>
+                                <p>Пн-Пт: 9:00 - 18:00</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title">Быстрая консультация</h3>
-                            <form action="{{ url_for('contacts') }}" method="POST">
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" name="name" placeholder="Ваше имя" required>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="tel" class="form-control" name="phone" placeholder="Телефон" required>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="email" class="form-control" name="email" placeholder="Email">
-                                </div>
-                                <button type="submit" class="btn btn-primary w-100">Заказать звонок</button>
-                            </form>
+                <div class="col-lg-6 fade-in">
+                    <div class="contact-form-wrapper">
+                        <div class="card shadow-lg">
+                            <div class="card-body p-5">
+                                <h3 class="card-title text-center mb-5">Быстрая консультация</h3>
+                                <form action="{{ url_for('contacts') }}" method="POST">
+                                    <div class="mb-5">
+                                        <input type="text" class="form-control form-control-lg" name="name" placeholder="Ваше имя" required>
+                                    </div>
+                                    <div class="mb-5">
+                                        <input type="tel" class="form-control form-control-lg" name="phone" placeholder="Телефон" required>
+                                    </div>
+                                    <div class="mb-5">
+                                        <input type="email" class="form-control form-control-lg" name="email" placeholder="Email">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-lg w-100 py-3">Заказать звонок</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -166,31 +238,49 @@
     </section>
 
     <!-- Футер -->
-    <footer class="bg-dark text-white py-4">
+    <footer class="bg-dark text-white py-7">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <h5>Васильчук и партнеры</h5>
-                    <p>Профессиональные юридические услуги для бизнеса и частных лиц.</p>
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <div class="footer-logo mb-5">
+                        <h2 class="text-white">VIP</h2>
+                    </div>
+                    <p class="mb-5">Профессиональные юридические услуги для бизнеса и частных лиц с гарантией конфиденциальности.</p>
+                    <div class="social-links">
+                        <a href="https://vk.com" target="_blank" class="text-white me-4"><i class="fab fa-vk fa-2x"></i></a>
+                        <a href="https://t.me/BBankrotstvo" target="_blank" class="text-white"><i class="fab fa-telegram-plane fa-2x"></i></a>
+                    </div>
                 </div>
-                <div class="col-md-4 mb-3">
-                    <h5>Навигация</h5>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="text-white mb-5">Навигация</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{{ url_for('index') }}" class="text-white">Главная</a></li>
-                        <li><a href="{{ url_for('services') }}" class="text-white">Услуги</a></li>
-                        <li><a href="{{ url_for('about') }}" class="text-white">О компании</a></li>
-                        <li><a href="{{ url_for('blog') }}" class="text-white">Блог</a></li>
-                        <li><a href="{{ url_for('contacts') }}" class="text-white">Контакты</a></li>
+                        <li class="mb-3"><a href="{{ url_for('index') }}" class="text-white-50">Главная</a></li>
+                        <li class="mb-3"><a href="{{ url_for('services') }}" class="text-white-50">Услуги</a></li>
+                        <li class="mb-3"><a href="{{ url_for('about') }}" class="text-white-50">О компании</a></li>
+                        <li class="mb-3"><a href="https://t.me/BBankrotstvo" target="_blank" class="text-white-50">Блог</a></li>
+                        <li><a href="{{ url_for('contacts') }}" class="text-white-50">Контакты</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 mb-3">
-                    <h5>Контакты</h5>
-                    <p><i class="fas fa-map-marker-alt me-2"></i> Екатеринбург, ул. Мамина-Сибиряка, д. 101, оф. 7-18</p>
-                    <p><i class="fas fa-phone me-2"></i> +7 902 276-07-18</p>
-                    <p><i class="fas fa-envelope me-2"></i> vipvasel4uk@yandex.ru</p>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="text-white mb-5">Услуги</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><a href="{{ url_for('services') }}#bankruptcy" class="text-white-50">Банкротство</a></li>
+                        <li class="mb-3"><a href="{{ url_for('services') }}#real-estate" class="text-white-50">Споры по недвижимости</a></li>
+                        <li class="mb-3"><a href="{{ url_for('services') }}#administrative" class="text-white-50">Административные споры</a></li>
+                        <li class="mb-3"><a href="{{ url_for('services') }}#tax" class="text-white-50">Налоговые споры</a></li>
+                        <li><a href="{{ url_for('services') }}#corporate" class="text-white-50">Корпоративное право</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="text-white mb-5">Контакты</h5>
+                    <ul class="list-unstyled text-white-50">
+                        <li class="mb-4"><i class="fas fa-map-marker-alt me-3 text-primary"></i> Екатеринбург, ул. Мамина-Сибиряка, д. 101, оф. 7-18</li>
+                        <li class="mb-4"><i class="fas fa-phone me-3 text-primary"></i> +7 902 276-07-18</li>
+                        <li><i class="fas fa-envelope me-3 text-primary"></i> vipvasel4uk@yandex.ru</li>
+                    </ul>
                 </div>
             </div>
-            <hr>
+            <hr class="my-6">
             <div class="text-center">
                 <p class="mb-0">&copy; 2025 Васильчук и партнеры. Все права защищены.</p>
             </div>
@@ -198,5 +288,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
