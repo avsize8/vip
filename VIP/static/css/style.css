@@ -1,13 +1,13 @@
 :root {
     /* Цветовая палитра */
-    --primary-color: #000103;
+    --primary-color: #05080a;
     --primary-light: #27496d;
-    --secondary-color: #f8f9fa;
+    --secondary-color: #05080a;
     --accent-color: #00a8cc;
-    --accent-dark: #0097b7;
+    --accent-dark: #173084;
     --accent-light: #00c9ff;
-    --text-color: #000103;
-    --text-light: #636e72;
+    --text-color: #05080a;
+    --text-light: #ffffff;
     --dark-bg: #0c2461;
     --dark-bg-light: #1e3799;
     --light-bg: #f1f9ff;
