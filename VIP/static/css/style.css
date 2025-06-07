@@ -39,7 +39,7 @@ html {
 }
 
 body {
-    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: 'Arial', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.7;
     color: var(--text-color);
     background-color: var(--white);
@@ -48,7 +48,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Arial', serif;
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 1.5rem;
