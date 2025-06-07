@@ -166,21 +166,8 @@ def contacts():
             return redirect(url_for('contacts'))
         
         try:
-            # Проверяем существование директории для базы данных
-            os.makedirs(os.path.dirname(app.config['DATABASE']), exist_ok=True)
-            
             db = get_db_connection()
-            cursor = db.cursor()
-            
-            # Проверяем существование таблицы
-            cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='applications'")
-            table_exists = cursor.fetchone()
-            
-            if not table_exists:
-                init_db()  # Если таблицы нет, инициализируем базу данных
-            
-            # Вставляем данные
-            cursor.execute('''
+            db.execute('''
                 INSERT INTO applications (name, phone, email, service_type, message)
                 VALUES (?, ?, ?, ?, ?)
             ''', (name, phone, email, service_type, message))
@@ -198,25 +185,17 @@ def contacts():
                 '''
                 send_email('Новая заявка с сайта', email_body, app.config['ADMIN_EMAIL'])
             
-            flash('Ваша заявка принята! Мы свяжемся с вами в ближайшее время.', 'success')
+            db.close()
             
-        except sqlite3.Error as e:
-            db.rollback()
-            flash('Произошла ошибка при сохранении данных. Пожалуйста, попробуйте позже.', 'danger')
-            app.logger.error(f"Database error: {e}")
+            flash('Ваша заявка принята! Мы свяжемся с вами в ближайшее время.', 'success')
+            return redirect(url_for('contacts'))
             
         except Exception as e:
-            flash('Произошла непредвиденная ошибка. Пожалуйста, попробуйте позже.', 'danger')
-            app.logger.error(f"Error in contacts route: {e}")
-            
-        finally:
-            if 'db' in locals():
-                db.close()
-            
-        return redirect(url_for('contacts'))
+            db.close()
+            flash('Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже.', 'danger')
+            app.logger.error(f"Error submitting form: {e}")
     
     return render_template('contacts.html')
-
 
 @app.route('/blog')
 def blog():
@@ -225,7 +204,24 @@ def blog():
     db.close()
     return render_template('blog.html', articles=articles)
 
+@app.route('/article/<int:article_id>')
+def article(article_id):
+    db = get_db_connection()
+    article = db.execute('SELECT * FROM articles WHERE id = ?', (article_id,)).fetchone()
+    if not article:
+        db.close()
+        flash('Статья не найдена', 'danger')
+        return redirect(url_for('blog'))
+    
+    related_articles = db.execute('''
+        SELECT * FROM articles 
+        WHERE id != ? 
+        ORDER BY RANDOM() 
+        LIMIT 3
+    ''', (article_id,)).fetchall()
+    db.close()
+    return render_template('article.html', article=article, related_articles=related_articles)
 
 if __name__ == '__main__':
     init_db()
-    app.run(debug=True) 
+    app.run(debug=True)
