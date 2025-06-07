@@ -7,10 +7,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Навигация -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{{ url_for('index') }}">VIP</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -39,108 +40,117 @@
     </nav>
 
     <!-- Шапка страницы -->
-    <header class="page-header">
-        <div class="container">
-            <h1>О нашей компании</h1>
-            <p>Профессиональные юридические услуги с 2010 года</p>
+    <header class="hero-section">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-6 fade-in">
+                    <h1 class="hero-title mb-4">О компании</h1>
+                    <p class="hero-subtitle mb-5">Профессиональные юридические услуги с 2010 года</p>
+                    <div class="hero-buttons">
+                        <a href="#team" class="btn btn-primary btn-lg me-3">Наша команда</a>
+                        <a href="{{ url_for('contacts') }}" class="btn btn-outline-light btn-lg">Связаться с нами</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 fade-in delay-1">
+                    <div class="hero-image-wrapper">
+                        <img src="{{ url_for('static', filename='images/about-hero.jpg') }}" alt="" class="hero-image">
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
     <!-- Основное содержание -->
-    <section class="about-page py-5">
+    <section class="section py-7">
         <div class="container">
-            <div class="row align-items-center mb-5">
-                <div class="col-lg-6">
-                    <h2>Наша история</h2>
-                    <p>Юридическая компания "Васильчук и партнеры" была основана в 2010 году с целью предоставления высококачественных юридических услуг для бизнеса и частных лиц.</p>
+            <div class="row align-items-center mb-6">
+                <div class="col-lg-6 mb-5 mb-lg-0 fade-in">
+                    <h2 class="mb-4">Наша история</h2>
+                    <p class="mb-4">Юридическая компания "Васильчук и партнеры" была основана в 2010 году с целью предоставления высококачественных юридических услуг для бизнеса и частных лиц.</p>
                     <p>За годы работы мы помогли сотням клиентов решить сложные юридические вопросы и защитить их интересы в судах и государственных органах.</p>
                 </div>
-                <div class="col-lg-6">
-                    <img src="{{ url_for('static', filename='images/office.jpg') }}" alt="" class="img-fluid rounded shadow">
+                <div class="col-lg-6 fade-in delay-1">
+                    <img src="{{ url_for('static', filename='images/office.jpg') }}" alt="" class="img-fluid rounded-4 shadow-lg">
                 </div>
             </div>
 
-            <div class="about-stats py-5 my-5 bg-light">
-                <div class="container">
+            <!-- Статистика -->
+            <div class="about-stats py-6 my-6 bg-dark text-white rounded-4 position-relative overflow-hidden fade-in mb-6">
+                <div class="position-absolute top-0 start-0 w-100 h-100 opacity-10" style="background: url('{{ url_for('static', filename='images/dot-pattern.png') }}') repeat;"></div>
+                <div class="container position-relative z-index-1">
                     <div class="row text-center">
-                        <div class="col-md-3 col-6">
+                        <div class="col-md-3 col-6 mb-4 mb-md-0">
                             <div class="stat-item">
-                                <div class="number">{{ stats['years'] }}+</div>
-                                <div class="label">Лет опыта</div>
+                                <div class="display-4 fw-bold mb-2">{{ stats['years'] }}+</div>
+                                <div class="h5 text-accent">Лет опыта</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mb-4 mb-md-0">
+                            <div class="stat-item">
+                                <div class="display-4 fw-bold mb-2">{{ stats['cases'] }}+</div>
+                                <div class="h5 text-accent">Успешных дел</div>
                             </div>
                         </div>
                         <div class="col-md-3 col-6">
                             <div class="stat-item">
-                                <div class="number">{{ stats['cases'] }}+</div>
-                                <div class="label">Успешных дел</div>
+                                <div class="display-4 fw-bold mb-2">{{ stats['clients'] }}+</div>
+                                <div class="h5 text-accent">Довольных клиентов</div>
                             </div>
                         </div>
                         <div class="col-md-3 col-6">
                             <div class="stat-item">
-                                <div class="number">{{ stats['clients'] }}+</div>
-                                <div class="label">Довольных клиентов</div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-6">
-                            <div class="stat-item">
-                                <div class="number">{{ stats['awards'] }}+</div>
-                                <div class="label">Профессиональных наград</div>
+                                <div class="display-4 fw-bold mb-2">{{ stats['awards'] }}+</div>
+                                <div class="h5 text-accent">Профессиональных наград</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row align-items-center">
-                <div class="col-lg-6 order-lg-2">
-                    <h2>Наши принципы</h2>
+            <div class="row align-items-center mt-6">
+                <div class="col-lg-6 order-lg-2 mb-5 mb-lg-0 fade-in">
+                    <h2 class="mb-4">Наши принципы</h2>
                     <div class="d-flex align-items-start mb-4">
-                        <i class="fas fa-balance-scale fa-2x text-primary me-4 mt-2"></i>
+                        <div class="feature-icon me-4">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
                         <div>
-                            <h4>Профессионализм</h4>
-                            <p>Наши юристы имеют многолетний опыт и регулярно повышают квалификацию.</p>
+                            <h4 class="mb-2">Профессионализм</h4>
+                            <p class="mb-0">Наши юристы имеют многолетний опыт и регулярно повышают квалификацию.</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-start mb-4">
-                        <i class="fas fa-user-shield fa-2x text-primary me-4 mt-2"></i>
+                        <div class="feature-icon me-4">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
                         <div>
-                            <h4>Конфиденциальность</h4>
-                            <p>Мы гарантируем полную конфиденциальность информации наших клиентов.</p>
+                            <h4 class="mb-2">Конфиденциальность</h4>
+                            <p class="mb-0">Мы гарантируем полную конфиденциальность информации наших клиентов.</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-start mb-4">
-                        <i class="fas fa-handshake fa-2x text-primary me-4 mt-2"></i>
+                        <div class="feature-icon me-4">
+                            <i class="fas fa-handshake"></i>
+                        </div>
                         <div>
-                            <h4>Индивидуальный подход</h4>
-                            <p>Для каждого клиента мы разрабатываем персональную стратегию.</p>
+                            <h4 class="mb-2">Индивидуальный подход</h4>
+                            <p class="mb-0">Для каждого клиента мы разрабатываем персональную стратегию.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 order-lg-1">
-                    <img src="{{ url_for('static', filename='images/principles.jpg') }}" alt="" class="img-fluid rounded shadow">
+                <div class="col-lg-6 order-lg-1 fade-in delay-1">
+                    <img src="{{ url_for('static', filename='images/principles.jpg') }}" alt="" class="img-fluid rounded-4 shadow-lg">
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Наша команда -->
-    <section class="team-section py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5"></h2>
-            <div class="row">
-                {% for member in team_members %}
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="team-card">
-                        <img src="{{ url_for('static', filename='images/team/' + member['image']) if member['image'] else 'https://via.placeholder.com/300x300' }}" class="team-img" alt="{{ member['name'] }}">
-                        <div class="team-body">
-                            <h3>{{ member['name'] }}</h3>
-                            <div class="position">{{ member['position'] }}</div>
-                            <p class="text-muted">{{ member['bio'] if member['bio'] else 'Опыт работы: ' + member['experience']|string + ' лет' }}</p>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
+    <!-- Призыв к действию -->
+    <section class="section py-7 bg-dark text-white position-relative">
+        <div class="position-absolute top-0 start-0 w-100 h-100 opacity-10" style="background: url('{{ url_for('static', filename='images/dot-pattern.png') }}') repeat;"></div>
+        <div class="container position-relative z-index-1 text-center fade-in">
+            <h2 class="text-white">Готовы помочь с вашим юридическим вопросом</h2>
+            <p class="text-white">Свяжитесь с нами для консультации и мы найдем оптимальное решение для вашей ситуации</p>
+            <a href="{{ url_for('contacts') }}" class="btn btn-primary btn-lg px-5">Записаться на консультацию</a>
         </div>
     </section>
 
@@ -164,7 +174,7 @@
                         <li class="mb-3"><a href="{{ url_for('index') }}" class="text-white-50">Главная</a></li>
                         <li class="mb-3"><a href="{{ url_for('services') }}" class="text-white-50">Услуги</a></li>
                         <li class="mb-3"><a href="{{ url_for('about') }}" class="text-white-50">О компании</a></li>
-                        <li class="mb-3"><a href="https://t.me/BBankrotstvo" target="_blank" class="text-white-50">Блог</a></li>
+                        <li class="mb-3"><a href="{{ url_for('blog') }}" class="text-white-50">Блог</a></li>
                         <li><a href="{{ url_for('contacts') }}" class="text-white-50">Контакты</a></li>
                     </ul>
                 </div>
@@ -193,6 +203,31 @@
             </div>
         </div>
     </footer>
+
+    <!-- Кнопка "Наверх" -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Показываем кнопку "Наверх" при прокрутке
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        // Добавляем плавную прокрутку для всех ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
