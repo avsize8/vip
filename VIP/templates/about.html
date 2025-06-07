@@ -56,7 +56,7 @@
                     <p>За годы работы мы помогли сотням клиентов решить сложные юридические вопросы и защитить их интересы в судах и государственных органах.</p>
                 </div>
                 <div class="col-lg-6">
-                    <img src="{{ url_for('static', filename='images/office.jpg') }}" alt="Наш офис" class="img-fluid rounded shadow">
+                    <img src="{{ url_for('static', filename='images/office.jpg') }}" alt="" class="img-fluid rounded shadow">
                 </div>
             </div>
 
@@ -117,7 +117,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 order-lg-1">
-                    <img src="{{ url_for('static', filename='images/principles.jpg') }}" alt="Наши принципы" class="img-fluid rounded shadow">
+                    <img src="{{ url_for('static', filename='images/principles.jpg') }}" alt="" class="img-fluid rounded shadow">
                 </div>
             </div>
         </div>
@@ -145,37 +145,54 @@
     </section>
 
     <!-- Футер -->
-    <footer class="bg-dark text-white py-4">
+    <footer class="bg-dark text-white py-7">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <h5>Васильчук и партнеры</h5>
-                    <p>Профессиональные юридические услуги для бизнеса и частных лиц.</p>
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <div class="footer-logo mb-5">
+                        <h2 class="text-white">VIP</h2>
+                    </div>
+                    <p class="mb-5">Профессиональные юридические услуги для бизнеса и частных лиц с гарантией конфиденциальности.</p>
+                    <div class="social-links">
+                        <a href="https://vk.com/bbankrotstvoo" target="_blank" class="text-white me-4"><i class="fab fa-vk fa-2x"></i></a>
+                        <a href="https://t.me/BBankrotstvo" target="_blank" class="text-white"><i class="fab fa-telegram-plane fa-2x"></i></a>
+                    </div>
                 </div>
-                <div class="col-md-4 mb-3">
-                    <h5>Навигация</h5>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="text-white mb-5">Навигация</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{{ url_for('index') }}" class="text-white">Главная</a></li>
-                        <li><a href="{{ url_for('services') }}" class="text-white">Услуги</a></li>
-                        <li><a href="{{ url_for('about') }}" class="text-white">О компании</a></li>
-                        <li><a href="{{ url_for('blog') }}" class="text-white">Блог</a></li>
-                        <li><a href="{{ url_for('contacts') }}" class="text-white">Контакты</a></li>
+                        <li class="mb-3"><a href="{{ url_for('index') }}" class="text-white-50">Главная</a></li>
+                        <li class="mb-3"><a href="{{ url_for('services') }}" class="text-white-50">Услуги</a></li>
+                        <li class="mb-3"><a href="{{ url_for('about') }}" class="text-white-50">О компании</a></li>
+                        <li class="mb-3"><a href="https://t.me/BBankrotstvo" target="_blank" class="text-white-50">Блог</a></li>
+                        <li><a href="{{ url_for('contacts') }}" class="text-white-50">Контакты</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 mb-3">
-                    <h5>Контакты</h5>
-                    <p><i class="fas fa-map-marker-alt me-2"></i> Екатеринбург, ул. Мамина-Сибиряка, д. 101, оф. 7-18</p>
-                    <p><i class="fas fa-phone me-2"></i> +7 902 276-07-18</p>
-                    <p><i class="fas fa-envelope me-2"></i> vipvasel4uk@yandex.ru</p>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="text-white mb-5">Услуги</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><a href="{{ url_for('services') }}#bankruptcy" class="text-white-50">Банкротство</a></li>
+                        <li class="mb-3"><a href="{{ url_for('services') }}#real-estate" class="text-white-50">Споры по недвижимости</a></li>
+                        <li class="mb-3"><a href="{{ url_for('services') }}#administrative" class="text-white-50">Административные споры</a></li>
+                        <li class="mb-3"><a href="{{ url_for('services') }}#tax" class="text-white-50">Налоговые споры</a></li>
+                        <li><a href="{{ url_for('services') }}#corporate" class="text-white-50">Корпоративное право</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="text-white mb-5">Контакты</h5>
+                    <ul class="list-unstyled text-white-50">
+                        <li class="mb-4"><i class="fas fa-map-marker-alt me-3 text-primary"></i> Екатеринбург, ул. Мамина-Сибиряка, д. 101, оф. 7-18</li>
+                        <li class="mb-4"><i class="fas fa-phone me-3 text-primary"></i> +7 902 276-07-18</li>
+                        <li><i class="fas fa-envelope me-3 text-primary"></i> vipvasel4uk@yandex.ru</li>
+                    </ul>
                 </div>
             </div>
-            <hr>
+            <hr class="my-6">
             <div class="text-center">
                 <p class="mb-0">&copy; 2025 Васильчук и партнеры. Все права защищены.</p>
             </div>
         </div>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
