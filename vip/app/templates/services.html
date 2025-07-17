@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Васильчук и партнеры - Юридические услуги</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/services.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">ВИП</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('services') }}">Услуги</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('about') }}">О компании</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('blog') }}">Блог</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contacts') }}">Контакты</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Шапка страницы -->
+    <header class="hero-section">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-6 fade-in">
+                    <h1 class="hero-title mb-4">Наши услуги</h1>
+                    <p class="hero-subtitle mb-5">Комплексные юридические решения для бизнеса и частных лиц. Профессиональный подход и гарантированный результат.</p>
+                    <div class="hero-buttons">
+                        <a href="#services" class="btn btn-primary btn-lg me-3">Смотреть услуги</a>
+                        <a href="{{ url_for('contacts') }}" class="btn btn-outline-light btn-lg">Записаться на консультацию</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 fade-in delay-1">
+                    <div class="hero-image-wrapper">
+                </div>
+            </div>
+        </div>
+    </header>
+
+<!-- Основное содержание -->
+<section id="services" class="section services-section py-7">
+    <div class="container">
+        <div class="text-center mb-6 fade-in">
+            <h2 class="section-title">Направления нашей работы</h2>
+            <p class="lead">Профессиональные юридические услуги для решения ваших задач</p>
+        </div>
+
+        <div class="service-grid">
+            {% for service in services %}
+            <div class="service-card" style="--delay: {{ loop.index }}">
+                <div class="service-card-header">
+                    <div class="service-icon">
+                        <i class="fas fa-{{ service.icon }}"></i>
+                    </div>
+                    <h3 class="service-title text-white">{{ service.title }}</h3>
+                </div>
+                <div class="service-card-body">
+                    <p class="service-description">{{ service.description }}</p>
+                    
+                    <div class="service-features">
+                        <h4>Что мы предлагаем:</h4>
+                        <ul>
+                            {% if service.id == 'bankruptcy' %}
+                            <li>Консультации по процедуре банкротства</li>
+                            <li>Подготовка документов для подачи в суд</li>
+                            <li>Представительство в суде</li>
+                            <li>Взаимодействие с кредиторами</li>
+                            <li>Защита от субсидиарной ответственности</li>
+                            {% elif service.id == 'real-estate' %}
+                            <li>Разрешение споров о праве собственности</li>
+                            <li>Оспаривание сделок с недвижимостью</li>
+                            <li>Раздел имущества при разводе</li>
+                            <li>Споры с застройщиками</li>
+                            <li>Земельные споры</li>
+                            {% elif service.id == 'administrative' %}
+                            <li>Обжалование действий/бездействия госорганов</li>
+                            <li>Защита в делах об административных правонарушениях</li>
+                            <li>Лицензирование и разрешительная деятельность</li>
+                            <li>Споры с контролирующими органами</li>
+                            {% elif service.id == 'tax' %}
+                            <li>Налоговый аудит</li>
+                            <li>Обжалование решений налоговых органов</li>
+                            <li>Сопровождение налоговых проверок</li>
+                            <li>Оптимизация налогообложения</li>
+                            {% elif service.id == 'corporate' %}
+                            <li>Регистрация и реорганизация компаний</li>
+                            <li>Разработка договоров и внутренних документов</li>
+                            <li>Разрешение корпоративных конфликтов</li>
+                            <li>Сопровождение сделок M&A</li>
+                            {% elif service.id == 'family' %}
+                            <li>Расторжение брака</li>
+                            <li>Раздел совместно нажитого имущества</li>
+                            <li>Определение места жительства детей</li>
+                            <li>Взыскание алиментов</li>
+                            <li>Оспаривание отцовства/материнства</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    
+                    <a href="{{ url_for('contacts') }}?service={{ service.id }}" class="btn btn-primary service-btn">
+                        Заказать консультацию
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+    <!-- Футер -->
+    <footer class="bg-dark text-white py-7">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <div class="footer-logo mb-5">
+                        <h2 class="text-white">ВИП</h2>
+                    </div>
+                    <p class="mb-5">Профессиональные юридические услуги для бизнеса и частных лиц с гарантией конфиденциальности.</p>
+                    <div class="social-links">
+                        <a href="https://vk.com/bbankrotstvoo" target="_blank" class="text-white me-4"><i class="fab fa-vk fa-2x"></i></a>
+                        <a href="https://t.me/BBankrotstvo" target="_blank" class="text-white"><i class="fab fa-telegram-plane fa-2x"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="text-white mb-5">Навигация</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><a href="{{ url_for('index') }}" class="text-white-50">Главная</a></li>
+                        <li class="mb-3"><a href="{{ url_for('services') }}" class="text-white-50">Услуги</a></li>
+                        <li class="mb-3"><a href="{{ url_for('about') }}" class="text-white-50">О компании</a></li>
+                        <li class="mb-3"><a href="https://t.me/BBankrotstvo" target="_blank" class="text-white-50">Блог</a></li>
+                        <li><a href="{{ url_for('contacts') }}" class="text-white-50">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="text-white mb-5">Услуги</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><a href="{{ url_for('services') }}#bankruptcy" class="text-white-50">Банкротство</a></li>
+                        <li class="mb-3"><a href="{{ url_for('services') }}#real-estate" class="text-white-50">Споры по недвижимости</a></li>
+                        <li class="mb-3"><a href="{{ url_for('services') }}#administrative" class="text-white-50">Административные споры</a></li>
+                        <li class="mb-3"><a href="{{ url_for('services') }}#tax" class="text-white-50">Налоговые споры</a></li>
+                        <li><a href="{{ url_for('services') }}#corporate" class="text-white-50">Корпоративное право</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="text-white mb-5">Контакты</h5>
+                    <ul class="list-unstyled text-white-50">
+                        <li class="mb-4"><i class="fas fa-map-marker-alt me-3 text-primary"></i> Екатеринбург, Бажова 53, офис 1</li>
+                        <li class="mb-4"><i class="fas fa-phone me-3 text-primary"></i> +7 922 213-23-93</li>
+                        <li><i class="fas fa-envelope me-3 text-primary"></i> ВИПvasel4uk@yandex.ru</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-6">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 Васильчук и партнеры. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    
+    
+</body>
+</html>
