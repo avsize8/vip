@@ -143,6 +143,10 @@ img {
     margin: 0 auto;
 }
 
+/* Фиолетовые иконки для футера */
+    color: var(--accent-color) !important;
+}
+
 .section {
     padding: 8rem 0;
     position: relative;
@@ -617,18 +621,20 @@ textarea.form-control {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #000000;
     color: var(--text-light);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
     transition: var(--transition-normal);
+    border: 2px solid var(--text-light);
 }
 
 .social-links a:hover {
     background-color: var(--accent-color);
     transform: translateY(-5px);
+    border-color: var(--accent-color);
 }
 
 .footer-bottom {

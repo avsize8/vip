@@ -71,7 +71,7 @@
 
         <div class="service-grid">
             {% for service in services %}
-            <div class="service-card" style="--delay: {{ loop.index }}">
+            <div class="service-card" id="{{ service.slug }}" style="--delay: {{ loop.index }}">
                 <div class="service-card-header">
                     <div class="service-icon">
                         <i class="fas fa-{{ service.icon }}"></i>
@@ -84,34 +84,34 @@
                     <div class="service-features">
                         <h4>Что мы предлагаем:</h4>
                         <ul>
-                            {% if service.id == 'bankruptcy' %}
+                            {% if service.slug == 'bankruptcy' %}
                             <li>Консультации по процедуре банкротства</li>
                             <li>Подготовка документов для подачи в суд</li>
                             <li>Представительство в суде</li>
                             <li>Взаимодействие с кредиторами</li>
                             <li>Защита от субсидиарной ответственности</li>
-                            {% elif service.id == 'real-estate' %}
+                            {% elif service.slug == 'real-estate' %}
                             <li>Разрешение споров о праве собственности</li>
                             <li>Оспаривание сделок с недвижимостью</li>
                             <li>Раздел имущества при разводе</li>
                             <li>Споры с застройщиками</li>
                             <li>Земельные споры</li>
-                            {% elif service.id == 'administrative' %}
+                            {% elif service.slug == 'administrative' %}
                             <li>Обжалование действий/бездействия госорганов</li>
                             <li>Защита в делах об административных правонарушениях</li>
                             <li>Лицензирование и разрешительная деятельность</li>
                             <li>Споры с контролирующими органами</li>
-                            {% elif service.id == 'tax' %}
+                            {% elif service.slug == 'tax' %}
                             <li>Налоговый аудит</li>
                             <li>Обжалование решений налоговых органов</li>
                             <li>Сопровождение налоговых проверок</li>
                             <li>Оптимизация налогообложения</li>
-                            {% elif service.id == 'corporate' %}
+                            {% elif service.slug == 'corporate' %}
                             <li>Регистрация и реорганизация компаний</li>
                             <li>Разработка договоров и внутренних документов</li>
                             <li>Разрешение корпоративных конфликтов</li>
                             <li>Сопровождение сделок M&A</li>
-                            {% elif service.id == 'family' %}
+                            {% elif service.slug == 'family' %}
                             <li>Расторжение брака</li>
                             <li>Раздел совместно нажитого имущества</li>
                             <li>Определение места жительства детей</li>
@@ -121,7 +121,7 @@
                         </ul>
                     </div>
                     
-                    <a href="{{ url_for('contacts') }}?service={{ service.id }}" class="btn btn-primary service-btn">
+                    <a href="{{ url_for('contacts') }}?service={{ service.slug }}" class="btn btn-primary service-btn">
                         Заказать консультацию
                     </a>
                 </div>
@@ -162,7 +162,8 @@
                         <li class="mb-3"><a href="{{ url_for('services') }}#real-estate" class="text-white-50">Споры по недвижимости</a></li>
                         <li class="mb-3"><a href="{{ url_for('services') }}#administrative" class="text-white-50">Административные споры</a></li>
                         <li class="mb-3"><a href="{{ url_for('services') }}#tax" class="text-white-50">Налоговые споры</a></li>
-                        <li><a href="{{ url_for('services') }}#corporate" class="text-white-50">Корпоративное право</a></li>
+                        <li class="mb-3"><a href="{{ url_for('services') }}#corporate" class="text-white-50">Корпоративное право</a></li>
+                        <li><a href="{{ url_for('services') }}#family" class="text-white-50">Семейные споры</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-4">
@@ -170,7 +171,7 @@
                     <ul class="list-unstyled text-white-50">
                         <li class="mb-4"><i class="fas fa-map-marker-alt me-3 text-primary"></i> Екатеринбург, Бажова 53, офис 1</li>
                         <li class="mb-4"><i class="fas fa-phone me-3 text-primary"></i> +7 922 213-23-93</li>
-                        <li><i class="fas fa-envelope me-3 text-primary"></i> ВИПvasel4uk@yandex.ru</li>
+                        <li><i class="fas fa-envelope me-3 text-primary"></i> vipvasel4uk@yandex.ru</li>
                     </ul>
                 </div>
             </div>
