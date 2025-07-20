@@ -4,6 +4,7 @@ FROM python:3.12.9-slim as builder
 # Установка зависимостей для сборки
 RUN apt-get update && apt-get install -y \
     gcc \
+    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Создание виртуального окружения
@@ -17,6 +18,12 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 # Финальный образ
 FROM python:3.12.9-slim
+
+# Установка системных зависимостей
+RUN apt-get update && apt-get install -y \
+    libpq5 \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
 # Создание пользователя для безопасности
 RUN groupadd -r appuser && useradd -r -g appuser appuser
@@ -32,7 +39,7 @@ WORKDIR /app
 COPY . .
 
 # Создание необходимых директорий
-RUN mkdir -p /app/logs /app/instance && \
+RUN mkdir -p /app/logs /app/instance /app/app/static/uploads && \
     chown -R appuser:appuser /app
 
 # Переключение на непривилегированного пользователя
@@ -45,10 +52,10 @@ ENV FLASK_ENV=production
 
 # Проверка здоровья приложения
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD python -c "import requests; requests.get('http://localhost:5000/health')" || exit 1
+    CMD curl -f http://localhost:5000/health || exit 1
 
 # Порт
 EXPOSE 5000
 
-# Команда запуска
-CMD ["python", "wsgi.py"]
+# Команда запуска с Gunicorn
+CMD ["gunicorn", "--config", "gunicorn.conf.py", "wsgi:app"]

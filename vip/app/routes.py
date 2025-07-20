@@ -296,3 +296,31 @@ def init_app(app):
         )
         
         return render_template('applications_list.html', applications=applications)
+
+    @app.route('/health')
+    def health_check():
+        """Health check endpoint для мониторинга"""
+        try:
+            # Проверка базы данных
+            db.session.execute('SELECT 1')
+            
+            # Проверка Redis (если используется)
+            if current_app.config.get('CACHE_TYPE') == 'redis':
+                from flask_caching import Cache
+                cache = Cache(current_app)
+                cache.set('health_check', 'ok', timeout=10)
+                cache.get('health_check')
+            
+            return jsonify({
+                'status': 'healthy',
+                'timestamp': datetime.now().isoformat(),
+                'database': 'connected',
+                'cache': 'connected' if current_app.config.get('CACHE_TYPE') == 'redis' else 'not_configured'
+            }), 200
+        except Exception as e:
+            current_app.logger.error(f"Health check failed: {e}")
+            return jsonify({
+                'status': 'unhealthy',
+                'timestamp': datetime.now().isoformat(),
+                'error': str(e)
+            }), 500
