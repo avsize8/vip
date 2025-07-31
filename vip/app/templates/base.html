@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block description %}Профессиональные юридические услуги{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}юридические услуги, адвокат, юрист{% endblock %}">
+    <meta name="author" content="Юридическая компания">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta property="og:title" content="{% block og_title %}Юридические услуги{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Профессиональные юридические услуги{% endblock %}">
+    
+    <title>{% block title %}Юридические услуги{% endblock %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+    
+    <!-- CSRF Token -->
+    {% if config.CSRF_ENABLED %}
+    <meta name="csrf-token" content="">
+    {% endif %}
+</head>
+<body>
+    <!-- Navigation -->
+    {% block navigation %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-balance-scale me-2"></i>Юридическая компания
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('about') }}">О компании</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('services') }}">Услуги</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('blog') }}">Блог</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contacts') }}">Контакты</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% endblock %}
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="container mt-3">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    {% block footer %}
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Юридическая компания</h5>
+                    <p>Профессиональные юридические услуги</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2024 Юридическая компания. Все права защищены.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    
+    <!-- CSRF Token for AJAX -->
+    {% if config.CSRF_ENABLED %}
+    <script>
+        // Настройка CSRF токена для AJAX запросов
+        document.addEventListener('DOMContentLoaded', function() {
+            const tokenElement = document.querySelector('meta[name="csrf-token"]');
+            if (tokenElement) {
+                const token = tokenElement.getAttribute('content');
+                if (token) {
+                    // Добавляем токен ко всем AJAX запросам
+                    const originalFetch = window.fetch;
+                    window.fetch = function(url, options = {}) {
+                        if (options.method && options.method.toLowerCase() !== 'get') {
+                            options.headers = options.headers || {};
+                            options.headers['X-CSRFToken'] = token;
+                        }
+                        return originalFetch(url, options);
+                    };
+                }
+            }
+        });
+    </script>
+    {% endif %}
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
